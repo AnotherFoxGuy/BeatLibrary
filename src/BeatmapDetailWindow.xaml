@@ -1,0 +1,11 @@
+﻿<Window x:Class="BeatLibrary.BeatmapDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="BeatLibrary" Height="500" Width="500">
+    <Grid >
+        
+    </Grid>
+</Window>
