@@ -52,7 +52,7 @@ namespace BeatLibrary
 
         #region Singleton
 
-        private static readonly Lazy<Database> LazyDatabase = new(() => new Database());
+        private static readonly Lazy<Database> LazyDatabase = new Lazy<Database>(() => new Database());
 
         public static Database Instance => LazyDatabase.Value;
 

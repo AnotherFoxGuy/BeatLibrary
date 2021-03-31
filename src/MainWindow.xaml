@@ -2,12 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="BeatLibrary" Height="600" Width="1000">
     <Grid >
-        <ListBox Name="BeatmapsListBox" HorizontalAlignment="Left" Height="551" Margin="73,10,0,0" 
-                 VerticalAlignment="Top" Width="911" BorderBrush="White" BorderThickness="1"
+        <ListBox Name="BeatmapsListBox" Margin="73,10,0,0" BorderBrush="White" BorderThickness="1"
                  MouseDoubleClick="BeatmapsListbox_DoubleClick" SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>

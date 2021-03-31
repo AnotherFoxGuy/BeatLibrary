@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using Newtonsoft.Json;
 
 namespace BeatLibrary
 {
@@ -14,8 +10,6 @@ namespace BeatLibrary
     /// </summary>
     public partial class MainWindow : Window
     {
-        private PocoBeatmap jdsfj;
-
         public MainWindow()
         {
             InitializeComponent();

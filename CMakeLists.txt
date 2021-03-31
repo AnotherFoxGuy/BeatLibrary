@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.14)
 project(BeatLibrary LANGUAGES CSharp)
 
 # Set global .NET Framework version.
-set(CMAKE_DOTNET_TARGET_FRAMEWORK_VERSION "v4.7.2")
+set(CMAKE_DOTNET_TARGET_FRAMEWORK_VERSION "v4.8")
 
 # Set the C# language version for all projects.
-set(CMAKE_CSharp_FLAGS "/langversion:latest")
+set(CMAKE_CSharp_FLAGS "/langversion:9")
 
 # setup paths
 set(RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/")

@@ -6,7 +6,7 @@ using BeatSaverSharp;
 
 namespace BeatLibrary
 {
-    public sealed record PocoBeatmap
+    public class PocoBeatmap
     {
         public int ID { get; set; }
         public string Key { get; set; }
@@ -20,7 +20,7 @@ namespace BeatLibrary
         public string Hash { get; set; }
 
         public static explicit operator PocoBeatmap(Beatmap bm) =>
-            new()
+            new PocoBeatmap()
             {
                 Key = bm.Key,
                 Name = bm.Name,
@@ -34,20 +34,26 @@ namespace BeatLibrary
     }
 
 
-    public sealed record PocoMetadata
+    public class PocoMetadata
     {
-        public string SongName { get; set; } = null!;
-        public string SongSubName { get; set; } = null!;
-        public string SongAuthorName { get; set; } = null!;
-        public string LevelAuthorName { get; set; } = null!;
+        public string SongName { get; set; }
+        public string SongSubName { get; set; }
+        public string SongAuthorName { get; set; }
+        public string LevelAuthorName { get; set; }
         public long Duration { get; set; }
         public float BPM { get; set; }
         public string Automapper { get; set; }
-        public Difficulties Difficulties { get; set; } = null!;
-        public Collection<PocoBeatmapCharacteristic> Characteristics { get; set; } = null!;
+        public Difficulties Difficulties { get; set; }
+        public Collection<PocoBeatmapCharacteristic> Characteristics { get; set; }
 
-        public static explicit operator PocoMetadata(Metadata bm) =>
-            new()
+        public static explicit operator PocoMetadata(Metadata bm)
+        {
+            var chars = new Collection<PocoBeatmapCharacteristic>();
+
+            foreach (var ch in bm.Characteristics)
+                chars.Add((PocoBeatmapCharacteristic) ch);
+            
+            return new PocoMetadata()
             {
                 SongName = bm.SongName,
                 SongSubName = bm.SongSubName,
@@ -57,19 +63,18 @@ namespace BeatLibrary
                 BPM = bm.BPM,
                 Automapper = bm.Automapper,
                 Difficulties = bm.Difficulties,
-                Characteristics = new(
-                    bm.Characteristics.Cast<PocoBeatmapCharacteristic>().ToArray()
-                ),
+                Characteristics = chars
             };
+        }
     }
 
-    public sealed record PocoBeatmapCharacteristic
+    public class PocoBeatmapCharacteristic
     {
         public string Name { get; set; }
         public Dictionary<string, BeatmapCharacteristicDifficulty> Difficulties { get; set; }
 
         public static explicit operator PocoBeatmapCharacteristic(BeatmapCharacteristic bm) =>
-            new()
+            new PocoBeatmapCharacteristic()
             {
                 Name = bm.Name,
                 Difficulties = bm.Difficulties.ToDictionary(x => x.Key, y => y.Value)

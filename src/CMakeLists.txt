@@ -15,6 +15,8 @@ set(SOURCE_FILES
     BeatmapDetailWindow.xaml.cs
     SettingsWindow.xaml
     SettingsWindow.xaml.cs
+    ScanWindow.xaml
+    ScanWindow.xaml.cs
 )
 
 # Add executable project.
