@@ -1,0 +1,25 @@
+using System;
+using System.IO;
+using System.Windows;
+using Newtonsoft.Json;
+
+namespace BeatLibrary
+{
+    public class Settings
+    {
+        public string Gamepath => @"@CMAKE_CURRENT_SOURCE_DIR@/data";
+
+        #region Singleton
+
+        private static readonly Lazy<Settings> LazySettings = new Lazy<Settings>(() => new Settings());
+
+        public static Settings Instance => LazySettings.Value;
+
+        private Settings()
+        {
+        }
+
+        #endregion
+
+    }
+}

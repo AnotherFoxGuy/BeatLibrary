@@ -5,8 +5,10 @@ set(SOURCE_FILES
 	App.xaml
 	App.xaml.cs
 
+    DataClasses.cs
     Database.cs
     Settings.cs
+    Scanner.cs
 
     MainWindow.xaml
     MainWindow.xaml.cs

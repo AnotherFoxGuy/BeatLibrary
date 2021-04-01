@@ -15,3 +15,4 @@ set(EXECUTABLE_OUTPUT_PATH ${RUNTIME_OUTPUT_DIRECTORY})
 set(LIBRARY_OUTPUT_PATH ${RUNTIME_OUTPUT_DIRECTORY})
 
 add_subdirectory(src)
+add_subdirectory(test)
