@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using BeatSaverSharp;
 
 namespace BeatLibrary
 {
@@ -19,27 +20,14 @@ namespace BeatLibrary
         private void BeatmapsListbox_DoubleClick(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             var win = new BeatmapDetailWindow();
-            win.SetBeatmap((PocoBeatmap) BeatmapsListBox.SelectedItem);
+            win.SetBeatmap((Beatmap)BeatmapsListBox.SelectedItem);
             win.Show();
         }
 
-        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var maps = Directory.GetDirectories(Settings.Instance.Gamepath);
-
-            var rgx = new Regex(@"([\w\d]+) \(.*\)",
-                RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-            foreach (var map in maps)
-            {
-                var x = rgx.Match(map);
-                if (!x.Success) continue;
-
-                var bm = (PocoBeatmap) await App.Instance.BeatSaverApi.Key(x.Groups[1].Value);
-                Database.Instance.SaveBeatmap(bm);
-            }
-
-            BeatmapsListBox.ItemsSource = Database.Instance.GetAllBeatmaps();
+            var win = new ScanWindow(this);
+            win.Show();
         }
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)

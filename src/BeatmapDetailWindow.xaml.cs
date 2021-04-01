@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using BeatSaverSharp;
 
 namespace BeatLibrary
 {
@@ -15,7 +16,7 @@ namespace BeatLibrary
             InitializeComponent();
         }
 
-        public void SetBeatmap(PocoBeatmap bm)
+        public void SetBeatmap(Beatmap bm)
         {
             
         }

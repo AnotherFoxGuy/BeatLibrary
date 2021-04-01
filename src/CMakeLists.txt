@@ -7,7 +7,6 @@ set(SOURCE_FILES
 
     Database.cs
     Settings.cs
-    DataClasses.cs
 
     MainWindow.xaml
     MainWindow.xaml.cs
@@ -47,6 +46,7 @@ set(NUGET_PKGS
 	MahApps.Metro_2.4.4
     LiteDB_5.0.10
     BeatSaverSharp_2.0.1
+    NVorbis_0.10.1
 )
 
 # Set CLR assembly properties.
