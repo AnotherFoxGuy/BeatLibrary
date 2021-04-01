@@ -1,21 +1,28 @@
-﻿<Window x:Class="BeatLibrary.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BeatLibrary" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="BeatLibrary.MainWindow"
         WindowStartupLocation="CenterScreen"
         Title="BeatLibrary" Height="600" Width="1000">
+    <Window.DataContext>
+        <local:Beatmap/>
+    </Window.DataContext>
     <Grid >
-        <ListBox Name="BeatmapsListBox" Margin="73,10,0,0" BorderBrush="White" BorderThickness="1"
+        <ListBox x:Name="BeatmapsListBox" Margin="73,10,0,0" BorderBrush="White" BorderThickness="1"
                  MouseDoubleClick="BeatmapsListbox_DoubleClick" SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                    <TextBlock Text="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal" >
+                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="{Binding CoverURL, Mode=OneWay}"/>
+                        <TextBlock Text="{Binding Name}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
         <Button Content="Update" HorizontalAlignment="Left" Height="29" Margin="10,10,0,0" VerticalAlignment="Top" Width="45" RenderTransformOrigin="0.22,-0.182" Click="UpdateButton_Click"/>
         <Button Content="Settings" HorizontalAlignment="Left" Height="29" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="45" RenderTransformOrigin="0.22,-0.182" Click="OpenSettings_Click"/>
+
     </Grid>
 </Window>

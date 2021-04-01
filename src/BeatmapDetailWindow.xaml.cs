@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using BeatSaverSharp;
 
 namespace BeatLibrary
 {
@@ -11,14 +10,10 @@ namespace BeatLibrary
     /// </summary>
     public partial class BeatmapDetailWindow : Window
     {
-        public BeatmapDetailWindow()
+        public BeatmapDetailWindow(Beatmap beatmap)
         {
             InitializeComponent();
-        }
-
-        public void SetBeatmap(Beatmap bm)
-        {
-            
+            DataContext = beatmap;
         }
     }
 }

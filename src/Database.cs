@@ -80,6 +80,8 @@ namespace BeatLibrary
         public string CoverURL { get; set; }
         public string Hash { get; set; }
 
+        public bool AvailableOnBeatSaver { get; set; }
+
         public static implicit operator Beatmap(BeatSaverSharp.Beatmap bm) =>
             new Beatmap()
             {
@@ -90,7 +92,8 @@ namespace BeatLibrary
                 Uploaded = bm.Uploaded,
                 Metadata = bm.Metadata,
                 Stats = bm.Stats,
-                CoverURL = bm.CoverURL,
+                CoverURL = bm.CoverURL.Contains("http") ? bm.CoverURL : $"https://beatsaver.com{bm.CoverURL}",
+                AvailableOnBeatSaver = true
             };
     }
 
@@ -119,6 +122,25 @@ namespace BeatLibrary
                 Automapper = bm.Automapper,
                 Difficulties = bm.Difficulties,
                 Characteristics = bm.Characteristics.Select(ch => (BeatmapCharacteristic) ch).ToList()
+            };
+    }
+
+    public class Difficulties
+    {
+        public bool Easy { get; set; }
+        public bool Expert { get; set; }
+        public bool ExpertPlus { get; set; }
+        public bool Hard { get; set; }
+        public bool Normal { get; set; }
+
+        public static implicit operator Difficulties(BeatSaverSharp.Difficulties d) =>
+            new Difficulties()
+            {
+                Easy = d.Easy,
+                Hard = d.Hard,
+                Normal = d.Normal,
+                Expert = d.Expert,
+                ExpertPlus = d.ExpertPlus
             };
     }
 

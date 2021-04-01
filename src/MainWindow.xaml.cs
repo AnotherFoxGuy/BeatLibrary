@@ -19,8 +19,7 @@ namespace BeatLibrary
 
         private void BeatmapsListbox_DoubleClick(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            var win = new BeatmapDetailWindow();
-            win.SetBeatmap((Beatmap)BeatmapsListBox.SelectedItem);
+            var win = new BeatmapDetailWindow((Beatmap)BeatmapsListBox.SelectedItem);
             win.Show();
         }
 

@@ -1,11 +1,40 @@
-﻿<Window x:Class="BeatLibrary.BeatmapDetailWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen"
-        Title="BeatLibrary" Height="500" Width="500">
-    <Grid >
-        
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:local="clr-namespace:BeatLibrary" x:Class="BeatLibrary.BeatmapDetailWindow"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    Title="BeatLibrary" Height="500" Width="500">
+    <Window.DataContext>
+        <local:Beatmap />
+    </Window.DataContext>
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"
+               Source="{Binding CoverURL, Mode=OneTime}" />
+        <StackPanel Margin="115,10,10,10">
+            <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox Height="26" IsReadOnly="True" Text="{Binding Name, Mode=OneTime}" VerticalAlignment="Top"
+                     IsUndoEnabled="False"
+                     Padding="-0.4,4,0,-11" />
+            <Label Content="Uploaded" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox Height="26" IsReadOnly="True" Text="{Binding Uploaded, Mode=OneTime}" VerticalAlignment="Top"
+                     IsUndoEnabled="False"
+                     Padding="-0.4,4,0,-11" />
+            <Label Content="Key" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox Height="26" IsReadOnly="True" Text="{Binding Key, Mode=OneTime}" VerticalAlignment="Top"
+                     IsUndoEnabled="False"
+                     Padding="-0.4,4,0,-11" />
+            <Label Content="Uploader" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox Height="26" IsReadOnly="True" Text="{Binding Uploader.Username, Mode=OneTime}"
+                     VerticalAlignment="Top" IsUndoEnabled="False"
+                     Padding="-0.4,4,0,-11" />
+            <Label Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox Height="166" IsReadOnly="True" Text="{Binding Description, Mode=OneTime}" VerticalAlignment="Top"
+                     IsUndoEnabled="False"
+                     Padding="-0.4,4,0,-11" />
+
+        </StackPanel>
+
     </Grid>
 </Window>
