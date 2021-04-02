@@ -1,9 +1,9 @@
 {
   "_version": "2.0.0",
-  "_songName": "No Cock Like Horse Cock",
+  "_songName": "OwO",
   "_songSubName": "",
-  "_songAuthorName": "Pepper Coyote",
-  "_levelAuthorName": "Furry",
+  "_songAuthorName": "Edgar",
+  "_levelAuthorName": "Vos",
   "_beatsPerMinute": 95,
   "_shuffle": 0,
   "_shufflePeriod": 0.5,
@@ -24,7 +24,7 @@
           "_noteJumpMovementSpeed": 18,
           "_noteJumpStartBeatOffset": 0.05,
           "_customData": {
-            "_difficultyLabel": "Chance",
+            "_difficultyLabel": "Beans",
             "_editorOffset": 0,
             "_editorOldOffset": 0
           }

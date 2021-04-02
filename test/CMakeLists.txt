@@ -3,22 +3,22 @@ include(CSharpUtilities)
 
 project(BeatLibraryTest)
 
-configure_file(moc_Settings.cs.in moc_Settings.cs @ONLY)
+configure_file(mocks/mock_Settings.cs.in mocks/mock_Settings.cs @ONLY)
 
 set(SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/src/DataClasses.cs
     ${CMAKE_SOURCE_DIR}/src/Scanner.cs
 )
 set(MOC_SOURCE_FILES
-    moc_Settings.cs.in
-    ${CMAKE_CURRENT_BINARY_DIR}/moc_Settings.cs
-    moc_App.cs
-    moc_Database.cs
+    ${CMAKE_CURRENT_BINARY_DIR}/mocks/mock_Settings.cs
+    mocks/mock_App.cs
 )
 
 set(TEST_SOURCE_FILES
     Scanner_tests.cs
 )
+
+source_group("source" FILES ${SOURCE_FILES})
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${MOC_SOURCE_FILES} ${TEST_SOURCE_FILES})
 

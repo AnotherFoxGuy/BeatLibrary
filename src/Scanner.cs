@@ -52,45 +52,42 @@ namespace BeatLibrary
         {
             var x = rgx.Match(path);
             if (x.Success && x.Groups.Count > 1)
-            {
-                var key = x.Groups[1].Value;
-                if (Database.Instance.GetBeatmapByKey(key) == null)
-                    return await App.Instance.BeatSaverApi.Key(key);
-            }
-            else if (File.Exists($"{path}\\info.dat"))
-            {
-                var dat = File.ReadAllText($"{path}\\info.dat");
-                var lbm = JsonConvert.DeserializeObject<LocalBeatmap>(dat);
+                return await App.Instance.BeatSaverApi.Key(x.Groups[1].Value);
+            
 
-                return new Beatmap
+            if (!File.Exists($"{path}\\info.dat")) return null;
+            
+            var dat = File.ReadAllText($"{path}\\info.dat");
+            var lbm = JsonConvert.DeserializeObject<LocalBeatmap>(dat);
+            var hash = HashBeatmap(path, lbm);
+
+            return new Beatmap
+            {
+                Name = lbm.SongName,
+                Description = lbm.SongSubName,
+                AvailableOnBeatSaver = false,
+                CoverURL = $"{path}\\{lbm.CoverImageFilename}",
+                Hash = hash,
+                Metadata = new Metadata
                 {
-                    Name = lbm.SongName,
-                    Description = lbm.SongSubName,
-                    AvailableOnBeatSaver = false,
-                    CoverURL = $"{path}\\{lbm.CoverImageFilename}",
-                    Metadata = new Metadata
+                    Difficulties = new Difficulties
                     {
-                        Difficulties = new Difficulties
-                        {
-                            Easy = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Easy"),
-                            Hard = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Hard"),
-                            Normal = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Normal"),
-                            Expert = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Expert"),
-                            ExpertPlus = lbm.DifficultyBeatmapSets.Any(it => it.Name == "ExpertPlus")
-                        },
-                        BPM = lbm.BeatsPerMinute,
-                        LevelAuthorName = lbm.LevelAuthorName,
-                        SongAuthorName = lbm.SongAuthorName,
-                        SongName = lbm.SongName,
-                        SongSubName = lbm.SongSubName
-                    }
-                };
-            }
-
-            return null;
+                        Easy = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Easy"),
+                        Hard = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Hard"),
+                        Normal = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Normal"),
+                        Expert = lbm.DifficultyBeatmapSets.Any(it => it.Name == "Expert"),
+                        ExpertPlus = lbm.DifficultyBeatmapSets.Any(it => it.Name == "ExpertPlus")
+                    },
+                    BPM = lbm.BeatsPerMinute,
+                    LevelAuthorName = lbm.LevelAuthorName,
+                    SongAuthorName = lbm.SongAuthorName,
+                    SongName = lbm.SongName,
+                    SongSubName = lbm.SongSubName
+                }
+            };
         }
 
-        string HashBeatmap(string path, LocalBeatmap beatmap)
+        internal string HashBeatmap(string path, LocalBeatmap beatmap)
         {
             try
             {
@@ -114,7 +111,7 @@ namespace BeatLibrary
 
         #region Localbm
 
-        public partial class LocalBeatmap
+        public class LocalBeatmap
         {
             [JsonProperty("_version")] public string Version { get; set; }
 
@@ -150,12 +147,12 @@ namespace BeatLibrary
             public DifficultyBeatmapSet[] DifficultyBeatmapSets { get; set; }
         }
 
-        public partial class LocalBeatmapCustomData
+        public class LocalBeatmapCustomData
         {
             [JsonProperty("_contributors")] public object[] Contributors { get; set; }
         }
 
-        public partial class DifficultyBeatmapSet
+        public class DifficultyBeatmapSet
         {
             [JsonProperty("_beatmapCharacteristicName")]
             public string Name { get; set; }
@@ -163,7 +160,7 @@ namespace BeatLibrary
             [JsonProperty("_difficultyBeatmaps")] public DifficultyBeatmap[] DifficultyBeatmaps { get; set; }
         }
 
-        public partial class DifficultyBeatmap
+        public class DifficultyBeatmap
         {
             [JsonProperty("_difficulty")] public string Difficulty { get; set; }
 

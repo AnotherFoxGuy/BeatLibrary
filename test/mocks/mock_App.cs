@@ -27,10 +27,12 @@ namespace BeatLibrary
 
     public class MocBeatSaverApi
     {
-
         public async Task<Beatmap> Key(string key)
         {
-            return new Beatmap();
+            return new Beatmap
+            {
+                Name = "BeatSaverApi map"
+            };
         }
     }
 }

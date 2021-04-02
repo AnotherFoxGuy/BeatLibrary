@@ -44,9 +44,12 @@ namespace BeatLibrary
         {
             var s = new Scanner(_progress);
             var beatmaps = await s.ScanAll();
-
-            Database.Instance.SaveBeatmaps(beatmaps);
+            
             _mainWindow.BeatmapsListBox.ItemsSource = beatmaps;
+
+            Database.Instance.SaveBeatmaps(beatmaps.Where(m =>
+                Database.Instance.GetBeatmapByKey(m.Key) == null
+            ).ToList());
         }
     }
 }
