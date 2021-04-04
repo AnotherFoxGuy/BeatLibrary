@@ -22,7 +22,7 @@
 
         </ListBox>
         <Button Content="Update" HorizontalAlignment="Left" Height="29" Margin="10,10,0,0" VerticalAlignment="Top" Width="45" RenderTransformOrigin="0.22,-0.182" Click="UpdateButton_Click"/>
-        <Button Content="Settings" HorizontalAlignment="Left" Height="29" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="45" RenderTransformOrigin="0.22,-0.182" Click="OpenSettings_Click"/>
+        <Button Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Height="29" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="45" RenderTransformOrigin="0.22,-0.182" Click="OpenSettings_Click"/>
 
     </Grid>
 </Window>

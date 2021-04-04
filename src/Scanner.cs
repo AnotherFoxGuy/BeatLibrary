@@ -27,14 +27,19 @@ namespace BeatLibrary
 
         internal static int CountBeatmaps()
         {
-            return Directory.GetDirectories(Settings.Instance.Gamepath).Length;
+            return Directory.Exists(Settings.Instance.GamePath)
+                ? Directory.GetDirectories(Settings.Instance.GamePath).Length
+                : -1;
         }
 
         internal async Task<List<Beatmap>> ScanAll()
         {
+            if (!Directory.Exists(Settings.Instance.GamePath))
+                return null;
+            
             var i = 0;
 
-            var maps = Directory.GetDirectories(Settings.Instance.Gamepath);
+            var maps = Directory.GetDirectories(Settings.Instance.GamePath);
             var beatmaps = new List<Beatmap>();
 
             foreach (var map in maps)
@@ -50,13 +55,16 @@ namespace BeatLibrary
 
         internal async Task<Beatmap> Scan(string path)
         {
+            if (!Directory.Exists(path))
+                return null;
+            
             var x = rgx.Match(path);
             if (x.Success && x.Groups.Count > 1)
                 return await App.Instance.BeatSaverApi.Key(x.Groups[1].Value);
-            
+
 
             if (!File.Exists($"{path}\\info.dat")) return null;
-            
+
             var dat = File.ReadAllText($"{path}\\info.dat");
             var lbm = JsonConvert.DeserializeObject<LocalBeatmap>(dat);
             var hash = HashBeatmap(path, lbm);

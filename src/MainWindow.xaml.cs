@@ -19,20 +19,20 @@ namespace BeatLibrary
 
         private void BeatmapsListbox_DoubleClick(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            var win = new BeatmapDetailWindow((Beatmap)BeatmapsListBox.SelectedItem);
+            var win = new BeatmapDetailWindow((Beatmap) BeatmapsListBox.SelectedItem) {Owner = this};
             win.Show();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var win = new ScanWindow(this);
-            win.Show();
+            var win = new ScanWindow(this) {Owner = this};
+            win.ShowDialog();
         }
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
-            var win = new SettingsWindow();
-            win.Show();
+            var win = new SettingsWindow {Owner = this};
+            win.ShowDialog();
         }
     }
 }

@@ -28,7 +28,10 @@ namespace BeatLibrary
             InitializeComponent();
             TextLabel.Content = "";
             _mainWindow = mainWindow;
-
+        }
+        
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
             _progress = new Progress<int>(i =>
             {
                 TextLabel.Content = $"{i}/{max}";
@@ -37,11 +40,7 @@ namespace BeatLibrary
 
             max = Scanner.CountBeatmaps();
             ProgressBar.Maximum = max;
-        }
-
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
+            
             var s = new Scanner(_progress);
             var beatmaps = await s.ScanAll();
             

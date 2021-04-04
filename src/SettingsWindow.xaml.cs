@@ -13,18 +13,19 @@ namespace BeatLibrary
         public SettingsWindow()
         {
             InitializeComponent();
-            GamePathBox.Text = Settings.Instance.Gamepath;
+            GamePathBox.Text = Settings.Instance.GamePath;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Instance.Gamepath = GamePathBox.Text;
+            Settings.Instance.GamePath = GamePathBox.Text;
             Settings.Instance.Save();
+            Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }

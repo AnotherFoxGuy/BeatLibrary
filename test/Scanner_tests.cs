@@ -25,7 +25,7 @@ namespace BeatLibrary
         [Test]
         public async Task ScanSingleMap()
         {
-            var path = $"{Settings.Instance.Gamepath}\\map";
+            var path = $"{Settings.Instance.GamePath}\\map";
             var map = await _scanner.Scan(path);
             
             Assert.IsNotNull(map);
@@ -35,7 +35,7 @@ namespace BeatLibrary
         [Test]
         public async Task ScanSingleMapOnline()
         {
-            var path = $"{Settings.Instance.Gamepath}\\e621 (Name - Mapper)";
+            var path = $"{Settings.Instance.GamePath}\\e621 (Name - Mapper)";
             var map = await _scanner.Scan(path);
             
             Assert.IsNotNull(map);
@@ -45,7 +45,7 @@ namespace BeatLibrary
         [Test]
         public void HashMap()
         {
-            var path = $"{Settings.Instance.Gamepath}\\map";
+            var path = $"{Settings.Instance.GamePath}\\map";
             var dat = File.ReadAllText($"{path}\\info.dat");
             
             var map = JsonConvert.DeserializeObject<Scanner.LocalBeatmap>(dat);

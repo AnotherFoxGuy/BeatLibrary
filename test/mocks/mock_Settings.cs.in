@@ -7,7 +7,8 @@ namespace BeatLibrary
 {
     public class Settings
     {
-        public string Gamepath => @"@CMAKE_CURRENT_SOURCE_DIR@/data";
+        public string GamePath => @"${CMAKE_CURRENT_SOURCE_DIR}/data";
+        public string ExePath => @"${RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}.exe";
 
         #region Singleton
 

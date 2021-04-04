@@ -7,13 +7,13 @@ namespace BeatLibrary
 {
     public class Settings
     {
-        public string Gamepath { get; set; }
+        public string GamePath { get; set; }
 
         private readonly string _settingsPath = $"{Directory.GetCurrentDirectory()}/settings.json";
 
         public void SetDefaults()
         {
-            Gamepath = "NOT_FOUND";
+            GamePath = "NOT_FOUND";
         }
 
         public void Load()
@@ -23,7 +23,7 @@ namespace BeatLibrary
                 try
                 {
                     var tmp = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settingsPath));
-                    Gamepath = tmp.Gamepath;
+                    GamePath = tmp.GamePath;
                 }
                 catch (Exception ex)
                 {
