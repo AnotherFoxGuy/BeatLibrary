@@ -1,9 +1,9 @@
 # Setup project to use C# utilities.
 include(CSharpUtilities)
 
-project(BeatLibraryTest)
+set(EXE_NAME BeatLibraryTest)
 
-configure_file(mocks/mock_Settings.cs.in mocks/mock_Settings.cs @ONLY)
+configure_file(mocks/mock_Settings.cs.in mocks/mock_Settings.cs)
 
 set(SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/src/DataClasses.cs
@@ -15,12 +15,13 @@ set(MOC_SOURCE_FILES
 )
 
 set(TEST_SOURCE_FILES
+    Full_test.cs
     Scanner_tests.cs
 )
 
 source_group("source" FILES ${SOURCE_FILES})
 
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${MOC_SOURCE_FILES} ${TEST_SOURCE_FILES})
+add_library(${EXE_NAME} SHARED ${SOURCE_FILES} ${MOC_SOURCE_FILES} ${TEST_SOURCE_FILES})
 
 set(DOTNET_REF
 	System
@@ -41,12 +42,13 @@ set(NUGET_PKGS
     BeatSaverSharp_2.0.1
     NUnit_3.13.1
     NUnit.Console_3.12.0
+    FlaUI.UIA3_3.2.0
 )
 
 # Set CLR assembly properties.
-set_target_properties(${PROJECT_NAME} PROPERTIES
+set_target_properties(${EXE_NAME} PROPERTIES
 	WIN32_EXECUTABLE TRUE
     VS_DOTNET_REFERENCES "${DOTNET_REF}"
     VS_PACKAGE_REFERENCES "${NUGET_PKGS}"
-    VS_GLOBAL_ROOTNAMESPACE ${PROJECT_NAME}
+    VS_GLOBAL_ROOTNAMESPACE ${EXE_NAME}
 )
